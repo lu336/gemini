@@ -1,10 +1,8 @@
-name: Daily AI Paper Digest
+name: Daily Relay Protection Digest
 
 on:
   schedule:
-    # 每天 UTC 时间 00:00 运行（对应北京时间早上 08:00）
-    - cron: '0 0 * * *'
-  # 允许手动点击按钮触发，方便测试
+    - cron: '0 0 * * *' # 每天 UTC 0点 (北京时间 8点)
   workflow_dispatch:
 
 jobs:
@@ -18,7 +16,7 @@ jobs:
     - name: Set up Python
       uses: actions/setup-python@v4
       with:
-        python-version: '3.14'
+        python-version: '3.9'
 
     - name: Install dependencies
       run: |
@@ -27,6 +25,13 @@ jobs:
 
     - name: Run paper summarizer
       env:
-        # 这里从 GitHub Secrets 读取你的 API Key
+        # 核心 API Key
         GOOGLE_API_KEY: ${{ secrets.GOOGLE_API_KEY }}
-      run: python gemini.py
+        
+        # 邮箱配置 (从 Secrets 读取)
+        SMTP_SERVER: 'smtp.qq.com'      # 如果是 QQ 邮箱填这个
+        SMTP_PORT: '465'                # SSL 端口通常是 465
+        SENDER_EMAIL: ${{ secrets.SENDER_EMAIL }}
+        SENDER_PASSWORD: ${{ secrets.SENDER_PASSWORD }}
+        RECEIVER_EMAIL: ${{ secrets.RECEIVER_EMAIL }}
+      run: python main.py
