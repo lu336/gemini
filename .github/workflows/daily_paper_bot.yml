@@ -2,7 +2,7 @@ name: Daily Relay Protection Digest
 
 on:
   schedule:
-    - cron: '0 0 * * *' # 每天 UTC 0点 (北京时间 8点)
+    - cron: '0 0 * * *'
   workflow_dispatch:
 
 jobs:
