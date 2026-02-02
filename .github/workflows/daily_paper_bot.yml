@@ -18,7 +18,7 @@ jobs:
     - name: Set up Python
       uses: actions/setup-python@v4
       with:
-        python-version: '3.9'
+        python-version: '3.14'
 
     - name: Install dependencies
       run: |
@@ -29,4 +29,4 @@ jobs:
       env:
         # 这里从 GitHub Secrets 读取你的 API Key
         GOOGLE_API_KEY: ${{ secrets.GOOGLE_API_KEY }}
-      run: python main.py
+      run: python gemini.py
