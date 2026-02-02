@@ -25,12 +25,9 @@ jobs:
 
     - name: Run paper summarizer
       env:
-        # 核心 API Key
         GOOGLE_API_KEY: ${{ secrets.GOOGLE_API_KEY }}
-        
-        # 邮箱配置 (从 Secrets 读取)
-        SMTP_SERVER: 'smtp.qq.com'      # 如果是 QQ 邮箱填这个
-        SMTP_PORT: '465'                # SSL 端口通常是 465
+        SMTP_SERVER: 'smtp.qq.com'
+        SMTP_PORT: '465'
         SENDER_EMAIL: ${{ secrets.SENDER_EMAIL }}
         SENDER_PASSWORD: ${{ secrets.SENDER_PASSWORD }}
         RECEIVER_EMAIL: ${{ secrets.RECEIVER_EMAIL }}
